@@ -3,7 +3,7 @@ package teste;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.print("Running");
+		System.out.print("Sleeping");
 
 	}
 
