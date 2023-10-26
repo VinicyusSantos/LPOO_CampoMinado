@@ -1,4 +1,4 @@
-package teste;
+package jogo.campominado.main;
 
 public class Main {
 
