@@ -1,4 +1,4 @@
-package jogo.campominado;
+package game.campominado.campo;
 
 public class GeradorTabuleiro {
 

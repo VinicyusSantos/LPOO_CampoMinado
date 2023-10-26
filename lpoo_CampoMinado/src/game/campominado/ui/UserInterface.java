@@ -1,4 +1,4 @@
-package jogo.campominado.ui;
+package game.campominado.ui;
 
 public interface UserInterface {
 
