@@ -14,40 +14,23 @@ public class Tabuleiro {
 		this.bombas = bombas;
 	}
 
-	/*public int getLinhas() {
-		return linhas;
-	}
-
-	public void setLinhas(int linhas) {
-		this.linhas = linhas;
-	}
-
-	public int getColunas() {
-		return colunas;
-	}
-
-	public void setColunas(int colunas) {
-		this.colunas = colunas;
-	}*/
-	
 	//metodos
 	
 	//criando a matriz e cada celula
 	public void iniciarCampo() {
 		celulas = new Celula[linhas][colunas];
 		for(int i = 0; i < linhas; i++) {
-			for(int j = 0; i < colunas; j++) {
+			for(int j = 0; j < colunas; j++) {
 				celulas[i][j] = new Celula();
 			}
 		}
+		addMinas();
 	}
 	
-	public void mostrarTabuleiro() {
-		
-	}
-	
-	public void adicionandoBombas() {
-		
+	public void addMinas() {
+		/*metodo p/ adicionar minas aleatoriamente
+		 * percorrendo o tabuleiro
+		usando o addBombas da classe Celula*/
 	}
 	
 	
