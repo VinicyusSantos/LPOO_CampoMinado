@@ -52,4 +52,14 @@ public class Celula {
 			return false;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		if(!bomba) {
+			return "-1";
+		}
+		else {
+			return "+"+numeroBombasVizinhas();
+		}
+	}
 }

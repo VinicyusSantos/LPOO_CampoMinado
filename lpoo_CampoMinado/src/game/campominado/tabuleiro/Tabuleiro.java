@@ -33,5 +33,16 @@ public class Tabuleiro {
 		usando o addBombas da classe Celula*/
 	}
 	
+	@Override
+	public String toString() {
+		String str = "";
+		for(int i = 0; i < linhas; i++) {
+			for(int j = 0; j < colunas; j++) {
+				str += celulas[i][j] + " ";
+			}
+			str += "\n";
+		}
+		return str;
+	}
 	
 }

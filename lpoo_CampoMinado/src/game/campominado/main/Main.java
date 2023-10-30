@@ -1,6 +1,7 @@
 package game.campominado.main;
 
 import game.campominado.tabuleiro.GeradorTabuleiro;
+import game.campominado.tabuleiro.Tabuleiro;
 
 public class Main {
 
@@ -12,8 +13,8 @@ public class Main {
 		
 		
 		GeradorTabuleiro n = new GeradorTabuleiro(linhas,colunas,bombas);
-		n.gerarTabuleiro();
-		System.out.println(n);
+		Tabuleiro tab = n.gerarTabuleiro();
+		System.out.println(tab);
 	}
 
 }
