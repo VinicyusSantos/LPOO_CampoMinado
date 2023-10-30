@@ -24,6 +24,10 @@ public class Celula {
 		bomba = true;
 	}
 	
+	public void addVizinhos(Celula i) {
+		this.vizinhos.add(i);
+	}
+	
 	public boolean temBomba() {
 		return bomba;
 	}
@@ -38,7 +42,15 @@ public class Celula {
 	}
 	
 	public int numeroBombasVizinhas() {
-		
+		 int contadorBomba = 0;
+
+		    for (Celula vizinho : vizinhos) {
+		        if (vizinho.temBomba()) {
+		            contadorBomba++;
+		        }
+		    }
+
+		    return contadorBomba;
 	}
 	
 	public void marcar(){
@@ -55,11 +67,11 @@ public class Celula {
 	
 	@Override
 	public String toString() {
-		if(!bomba) {
-			return "-1";
+		if(bomba) {
+			return "*";
 		}
 		else {
-			return "+"+numeroBombasVizinhas();
+			return ""+numeroBombasVizinhas();
 		}
 	}
 }
