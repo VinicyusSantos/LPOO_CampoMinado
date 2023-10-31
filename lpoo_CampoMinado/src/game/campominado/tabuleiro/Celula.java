@@ -67,11 +67,13 @@ public class Celula {
 	
 	@Override
 	public String toString() {
-		if(bomba) {
+		if(bomba && aberto) {
 			return "*";
 		}
-		else {
+		else if(!bomba && aberto){
 			return ""+numeroBombasVizinhas();
+		}else {
+			return "-";
 		}
 	}
 }
