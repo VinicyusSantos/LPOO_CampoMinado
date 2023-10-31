@@ -47,6 +47,15 @@ public class Tabuleiro {
         }
 		addMinas();
 	}
+
+	public int continuandoJogo(int linha, int coluna) {
+			celulas[linha][coluna].clique();
+			if(celulas[linha][coluna].clique() == -1) {
+				return 1;
+			}else {
+				return 0;
+			}
+	}
 	
 	/*metodo p/ adicionar minas aleatoriamente
 	 * percorrendo o tabuleiro
