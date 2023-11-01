@@ -3,53 +3,76 @@ package game.campominado.tabuleiro;
 import java.util.ArrayList;
 
 public class Celula {
-	//atributos da classe celula
+	// atributos da classe celula
 	private boolean aberto;
 	private boolean bomba;
 	private boolean bandeira;
-	
+
 	ArrayList<Celula> vizinhos;
-	
-	//construtor para valores padrão
+
+	// construtor para valores padrão
 	public Celula() {
 		this.aberto = false;
 		this.bomba = false;
 		this.bandeira = false;
-		
+
 		this.vizinhos = new ArrayList<>();
 	}
-	
-	//metodos da celula
+
+	// metodos da celula
 	public void addBomba() {
 		bomba = true;
 	}
-	
+
+	public void addVizinhos(Celula i) {
+		this.vizinhos.add(i);
+	}
+
 	public boolean temBomba() {
 		return bomba;
 	}
-	
+
 	public int clique() {
 		this.aberto = true;
-		if(this.bomba == true) {
+		if (this.bomba == true) {
 			return -1;
-		}else {
+		} else {
 			return numeroBombasVizinhas();
 		}
 	}
-	
+
 	public int numeroBombasVizinhas() {
-		
+		int contadorBomba = 0;
+
+		for (Celula vizinho : vizinhos) {
+			if (vizinho.temBomba()) {
+				contadorBomba++;
+			}
+		}
+
+		return contadorBomba;
 	}
-	
-	public void marcar(){
-        this.bandeira = true;
-    }  
-	
+
+	public void marcar() {
+		this.bandeira = true;
+	}
+
 	public boolean fimJogo() {
-		if(aberto && bomba) {
+		if (aberto && bomba) {
 			return true;
-		}else {
+		} else {
 			return false;
+		}
+	}
+
+	@Override
+	public String toString() {
+		if (bomba && aberto) {
+			return "*";
+		} else if (!bomba && aberto) {
+			return "" + numeroBombasVizinhas();
+		} else {
+			return "-";
 		}
 	}
 }
