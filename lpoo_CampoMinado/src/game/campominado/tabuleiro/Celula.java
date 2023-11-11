@@ -23,19 +23,11 @@ public class Celula {
 	public void addBomba() {
 		bomba = true;
 	}
-<<<<<<< HEAD
 
 	public void addVizinhos(Celula i) {
 		this.vizinhos.add(i);
 	}
 
-=======
-	
-	public void addVizinhos(Celula i) {
-		this.vizinhos.add(i);
-	}
-	
->>>>>>> branch 'main' of https://github.com/VinicyusSantos/LPOO_CampoMinado.git
 	public boolean temBomba() {
 		return bomba;
 	}
@@ -50,7 +42,6 @@ public class Celula {
 	}
 
 	public int numeroBombasVizinhas() {
-<<<<<<< HEAD
 		int contadorBomba = 0;
 
 		for (Celula vizinho : vizinhos) {
@@ -60,17 +51,6 @@ public class Celula {
 		}
 
 		return contadorBomba;
-=======
-		 int contadorBomba = 0;
-
-		    for (Celula vizinho : vizinhos) {
-		        if (vizinho.temBomba()) {
-		            contadorBomba++;
-		        }
-		    }
-
-		    return contadorBomba;
->>>>>>> branch 'main' of https://github.com/VinicyusSantos/LPOO_CampoMinado.git
 	}
 
 	public void marcar() {
@@ -92,7 +72,6 @@ public class Celula {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -107,18 +86,3 @@ public class Celula {
 		}
 	}
 }
-=======
-	
-	@Override
-	public String toString() {
-		if(bomba && aberto) {
-			return "*";
-		}
-		else if(!bomba && aberto){
-			return ""+numeroBombasVizinhas();
-		}else {
-			return "-";
-		}
-	}
-}
->>>>>>> branch 'main' of https://github.com/VinicyusSantos/LPOO_CampoMinado.git
