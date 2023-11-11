@@ -54,11 +54,17 @@ public class Tabuleiro {
 		addMinas();
 	}
 
-	public int continuandoJogo(int linha, int coluna) {
-		celulas[linha][coluna].clique();
-		if (celulas[linha][coluna].clique() == -1) {
-			return 1;
-		} else {
+	public int continuandoJogo(int linha, int coluna, int id) {
+		if(id == 1) {
+			celulas[linha][coluna].clique();
+			if (celulas[linha][coluna].clique() == -1) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		else {
+			celulas[linha][coluna].marcar();
 			return 0;
 		}
 	}

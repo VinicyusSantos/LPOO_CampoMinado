@@ -54,7 +54,15 @@ public class Celula {
 	}
 
 	public void marcar() {
-		this.bandeira = true;
+		if(this.aberto) {
+			this.bandeira = false;
+		}
+		else if(this.bandeira) {
+			this.bandeira = !this.bandeira;
+		}
+		else {
+			this.bandeira = true;
+		}
 	}
 
 	public boolean fimJogo() {
@@ -71,6 +79,8 @@ public class Celula {
 			return "*";
 		} else if (!bomba && aberto) {
 			return "" + numeroBombasVizinhas();
+		} else if(bandeira) {
+			return "F";
 		} else {
 			return "-";
 		}
