@@ -63,8 +63,12 @@ public class Tabuleiro {
 				return 0;
 			}
 		}
-		else {
+		else if(id == 2) {
 			celulas[linha][coluna].marcar();
+			return 0;
+		}
+		else {
+			celulas[linha][coluna].desmarcar(false);
 			return 0;
 		}
 	}

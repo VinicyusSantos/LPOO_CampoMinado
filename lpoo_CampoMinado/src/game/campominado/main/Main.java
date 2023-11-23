@@ -18,7 +18,7 @@ public class Main {
 		Tabuleiro tab = n.gerarTabuleiro();
 		System.out.println(tab);
 		
-		System.out.print("Abrir[1] ou Bandeira?[2]");
+		System.out.print("Abrir[1] ou Bandeira?[2] ou Desmarcar?[3]");
 		int option = sc.nextInt();
 		System.out.print("linha: ");
 		int linha = sc.nextInt();
@@ -29,7 +29,7 @@ public class Main {
 		System.out.println(tab);
 
 		while (tab.continuandoJogo(linha, coluna, option) == 0) {
-			System.out.print("Abrir[1] ou Bandeira?[2]");
+			System.out.print("Abrir[1] ou Bandeira?[2] ou Desmarcar?[3]");
 			option = sc.nextInt();
 			System.out.print("linha: ");
 			linha = sc.nextInt();

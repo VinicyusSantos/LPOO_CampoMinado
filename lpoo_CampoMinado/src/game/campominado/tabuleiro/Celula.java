@@ -64,6 +64,10 @@ public class Celula {
 			this.bandeira = true;
 		}
 	}
+	
+	public void desmarcar(boolean mode) {
+		this.bandeira = mode;
+	}
 
 	public boolean fimJogo() {
 		if (aberto && bomba) {
