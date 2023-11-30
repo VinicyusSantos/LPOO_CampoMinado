@@ -14,6 +14,7 @@ public class Main {
 		int colunas = 9;
 		int bombas = 15;
 
+		//gerando o tabuleiro
 		GeradorTabuleiro n = new GeradorTabuleiro(linhas, colunas, bombas);
 		Tabuleiro tab = n.gerarTabuleiro();
 		System.out.println(tab);

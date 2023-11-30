@@ -54,6 +54,7 @@ public class Tabuleiro {
 		addMinas();
 	}
 
+		//metodo p/ continuar jogo
 	public int continuandoJogo(int linha, int coluna, int id) {
 		if(id == 1) {
 			celulas[linha][coluna].clique();

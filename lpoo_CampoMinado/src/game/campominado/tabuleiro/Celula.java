@@ -20,18 +20,23 @@ public class Celula {
 	}
 
 	// metodos da celula
+	
+		//adiciona bomba
 	public void addBomba() {
 		bomba = true;
 	}
 
+		//adiciona vizinhos
 	public void addVizinhos(Celula i) {
 		this.vizinhos.add(i);
 	}
 
+		//verifica se tem bomba
 	public boolean temBomba() {
 		return bomba;
 	}
 
+		//metodo que permite clicar
 	public int clique() {
 		this.aberto = true;
 		if (this.bomba == true) {
@@ -41,6 +46,7 @@ public class Celula {
 		}
 	}
 
+		//verificador de bombas vizinhas
 	public int numeroBombasVizinhas() {
 		int contadorBomba = 0;
 
@@ -53,6 +59,7 @@ public class Celula {
 		return contadorBomba;
 	}
 
+		//marcar bandeira
 	public void marcar() {
 		if(this.aberto) {
 			this.bandeira = false;
@@ -64,11 +71,13 @@ public class Celula {
 			this.bandeira = true;
 		}
 	}
-	
+		
+		//desmarcar bandeira
 	public void desmarcar(boolean mode) {
 		this.bandeira = mode;
 	}
 
+		//verificar fim de jogo
 	public boolean fimJogo() {
 		if (aberto && bomba) {
 			return true;
@@ -76,7 +85,8 @@ public class Celula {
 			return false;
 		}
 	}
-
+	
+	//imprimindo cada celula
 	@Override
 	public String toString() {
 		if (bomba && aberto) {
