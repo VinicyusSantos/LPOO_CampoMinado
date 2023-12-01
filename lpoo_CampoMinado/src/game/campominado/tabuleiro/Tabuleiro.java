@@ -1,5 +1,9 @@
 package game.campominado.tabuleiro;
 
+import game.campominado.celula.Celula;
+import game.campominado.celula.Bomba;
+import game.campominado.celula.VizinhaBomba;
+import game.campominado.celula.EspacoVazio;
 import java.util.Random;
 
 public class Tabuleiro {
@@ -23,7 +27,7 @@ public class Tabuleiro {
 		celulas = new Celula[linhas][colunas];
 		for (int i = 0; i < linhas; i++) {
 			for (int j = 0; j < colunas; j++) {
-				celulas[i][j] = new Celula();
+				celulas[i][j] = new EspacoVazio();
 			}
 		}
 		// adicionando vizinhos para verificar a qts de bombas
@@ -86,8 +90,8 @@ public class Tabuleiro {
 			int linha = random.nextInt(linhas);
 			int coluna = random.nextInt(colunas);
 
-			if (!celulas[linha][coluna].temBomba()) {
-				celulas[linha][coluna].addBomba();
+			if (!(celulas[linha][coluna] instanceof Bomba)) {
+				celulas[linha][coluna] = new Bomba();
 				minasRestantes--;
 			}
 		}

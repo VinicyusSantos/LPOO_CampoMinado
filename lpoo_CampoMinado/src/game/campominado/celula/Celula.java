@@ -1,4 +1,4 @@
-package game.campominado.tabuleiro;
+package game.campominado.celula;
 
 import java.util.ArrayList;
 
