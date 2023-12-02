@@ -9,8 +9,10 @@ public class EspacoVazio extends Celula {
     public String toString() {
         if (isAberto()) {
             return (isBomba()) ? "*" : String.valueOf(numeroBombasVizinhas());
+        } else if(isBandeira()) {
+            return "F";
         } else {
-            return "-";
+        	return "-";
         }
     }
 }

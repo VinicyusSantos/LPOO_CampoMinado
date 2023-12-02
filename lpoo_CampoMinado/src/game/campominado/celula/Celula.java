@@ -50,17 +50,15 @@ public class Celula {
 	public boolean temBomba() {
 		return bomba;
 	}
-
-		//metodo que permite clicar
-	/*public int clique() {
-		this.aberto = true;
-		if (this.bomba == true) {
-			return -1;
-		} else {
-			return numeroBombasVizinhas();
-		}
-	}*/
 	
+	public boolean isBandeira() {
+		return bandeira;
+	}
+
+	public void setBandeira(boolean bandeira) {
+		this.bandeira = bandeira;
+	}
+
 	public int clique() {
         this.aberto = true;
         return (this.bomba) ? -1 : numeroBombasVizinhas();
@@ -81,14 +79,14 @@ public class Celula {
 
 		//marcar bandeira
 	public void marcar() {
-		if(this.aberto) {
-			this.bandeira = false;
+		if(isAberto()) {
+			setBandeira(false);
 		}
-		else if(this.bandeira) {
-			this.bandeira = !this.bandeira;
+		else if(isBandeira()) {
+			setBandeira(!isBandeira());
 		}
 		else {
-			this.bandeira = true;
+			setBandeira(true);
 		}
 	}
 		
@@ -106,17 +104,4 @@ public class Celula {
 		}
 	}
 	
-	//imprimindo cada celula
-	/*@Override
-	public String toString() {
-		if (bomba && aberto) {
-			return "*";
-		} else if (!bomba && aberto) {
-			return "" + numeroBombasVizinhas();
-		} else if(bandeira) {
-			return "F";
-		} else {
-			return "-";
-		}
-	}*/
 }
