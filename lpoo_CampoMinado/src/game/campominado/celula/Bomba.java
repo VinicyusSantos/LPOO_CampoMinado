@@ -4,10 +4,17 @@ public class Bomba extends Celula {
 	
 	public Bomba() {
         super();
+        setBomba(true);
     }
+	
+		//metodo para adicionar bomba
+	
+	public boolean temBomba() {
+		return isBomba();
+	}
 
-    @Override
+	@Override
     public String toString() {
-        return "*";
+        return (isBomba() && isAberto()) ? "*" : "-";
     }
 }

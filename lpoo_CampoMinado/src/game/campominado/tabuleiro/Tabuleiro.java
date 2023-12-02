@@ -18,6 +18,7 @@ public class Tabuleiro {
 		this.linhas = linhas;
 		this.colunas = colunas;
 		this.bombas = bombas;
+		iniciarCampo();
 	}
 
 	// metodos
@@ -61,8 +62,8 @@ public class Tabuleiro {
 		//metodo p/ continuar jogo
 	public int continuandoJogo(int linha, int coluna, int id) {
 		if(id == 1) {
-			celulas[linha][coluna].clique();
-			if (celulas[linha][coluna].clique() == -1) {
+			int result = celulas[linha][coluna].clique();
+			if (result == -1) {
 				return 1;
 			} else {
 				return 0;

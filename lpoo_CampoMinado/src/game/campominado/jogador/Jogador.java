@@ -2,9 +2,9 @@ package game.campominado.jogador;
 
 public class Jogador {
 	private String name;
-	private double xp;
+	private int xp;
 	
-	public Jogador(String name, double xp) {
+	public Jogador(String name, int xp) {
 		this.name = name;
 		this.xp = xp;
 	}
@@ -13,11 +13,11 @@ public class Jogador {
 		return name;
 	}
 
-	public double getXp() {
+	public int getXp() {
 		return xp;
 	}
 
-	public void setXp(double xp) {
+	public void setXp(int xp) {
 		this.xp = xp;
 	}
 

@@ -5,8 +5,8 @@ public class VizinhaBomba extends Celula {
 	        super();
 	 }
 
-	 @Override
+	 /*@Override
 	 public String toString() {
 		 return String.valueOf(numeroBombasVizinhas());
-	 }
+	 }*/
 }

@@ -20,13 +20,28 @@ public class Celula {
 	}
 
 	// metodos da celula
-	
-		//adiciona bomba
-	public void addBomba() {
-		bomba = true;
+
+	public boolean isAberto() {
+		return aberto;
 	}
 
-		//adiciona vizinhos
+	public void setAberto(boolean aberto) {
+		this.aberto = aberto;
+	}
+
+	public boolean isBomba() {
+		return bomba;
+	}
+	
+	public void addBomba() {
+		setBomba(true);
+	}
+
+	public void setBomba(boolean bomba) {
+		this.bomba = bomba;
+	}
+
+	//adiciona vizinhos
 	public void addVizinhos(Celula i) {
 		this.vizinhos.add(i);
 	}
@@ -37,14 +52,19 @@ public class Celula {
 	}
 
 		//metodo que permite clicar
-	public int clique() {
+	/*public int clique() {
 		this.aberto = true;
 		if (this.bomba == true) {
 			return -1;
 		} else {
 			return numeroBombasVizinhas();
 		}
-	}
+	}*/
+	
+	public int clique() {
+        this.aberto = true;
+        return (this.bomba) ? -1 : numeroBombasVizinhas();
+    }
 
 		//verificador de bombas vizinhas
 	public int numeroBombasVizinhas() {
@@ -87,7 +107,7 @@ public class Celula {
 	}
 	
 	//imprimindo cada celula
-	@Override
+	/*@Override
 	public String toString() {
 		if (bomba && aberto) {
 			return "*";
@@ -98,5 +118,5 @@ public class Celula {
 		} else {
 			return "-";
 		}
-	}
+	}*/
 }
