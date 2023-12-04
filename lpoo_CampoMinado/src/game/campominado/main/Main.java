@@ -22,37 +22,42 @@ public class Main {
 		
 		//iniciando jogo
 		
-		/*System.out.print("NOME JOGADOR 1:");
-		String name1 = sc.next();
-		System.out.print("NOME JOGADOR 2:");
-		String name2 = sc.next();
+		System.out.print("NOME JOGADOR 1: ");
+		String nomeJogador1 = sc.next();
+		System.out.print("NOME JOGADOR 2: ");
+		String nomeJogador2 = sc.next();
 		
-		Jogador player1 = new Jogador(name1, 0);
-		Jogador player2 = new Jogador(name2, 0);*/
-		
-		System.out.print("Abrir[1] ou Bandeira?[2] ou Desmarcar?[3]");
-		int option = sc.nextInt();
-		System.out.print("linha: ");
-		int linha = sc.nextInt();
-		System.out.print("coluna: ");
-		int coluna = sc.nextInt();
+		Jogador[] jogadores = new Jogador[2];
+        jogadores[0] = new Jogador(nomeJogador1, 0);
+        jogadores[1] = new Jogador(nomeJogador2, 0);
 
-		tab.continuandoJogo(linha, coluna, option);
-		System.out.println(tab);
+        int indiceJogadorAtual = 0;
 
-		while (tab.continuandoJogo(linha, coluna, option) == 0) {
-			System.out.print("Abrir[1] ou Bandeira?[2] ou Desmarcar?[3]");
-			option = sc.nextInt();
-			System.out.print("linha: ");
-			linha = sc.nextInt();
-			System.out.print("coluna: ");
-			coluna = sc.nextInt();
+        while (true) {
+            System.out.println(jogadores[indiceJogadorAtual].getName() + ", é a sua vez:");
 
-			tab.continuandoJogo(linha, coluna, option);
-			System.out.println(tab);
-		}
+            System.out.print("Abrir[1] ou Colocar Bandeira?[2] ou Retirar Bandeira?[3]: ");
+            int opcao = sc.nextInt();
+            System.out.print("Linha: ");
+            int linha = sc.nextInt();
+            System.out.print("Coluna: ");
+            int coluna = sc.nextInt();
 
-		sc.close();
-	}
+            int resultado = tab.continuandoJogo(linha, coluna, opcao);
+            System.out.println(tab);
+
+            if (resultado == 1) {
+                System.out.println(jogadores[indiceJogadorAtual].getName() + " acertou em uma bomba! Jogo encerrado!");
+                break;
+            } else if (resultado == 0) {
+                jogadores[indiceJogadorAtual].setXp(jogadores[indiceJogadorAtual].getXp() + 1);
+            }
+
+            // Alternar para o outro jogador
+            indiceJogadorAtual = (indiceJogadorAtual + 1) % 2;
+        }
+
+        sc.close();
+    }
 
 }
