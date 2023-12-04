@@ -5,6 +5,20 @@ public class EspacoVazio extends Celula {
 		super();
 	}
 
+	
+	@Override
+    public int numeroBombasVizinhas() {
+        int contadorBomba = 0;
+
+        for (Celula vizinho : vizinhos) {
+            if (vizinho.temBomba()) {
+                contadorBomba++;
+            }
+        }
+
+        return contadorBomba;
+    }
+	
 	@Override
     public String toString() {
         if (isAberto()) {

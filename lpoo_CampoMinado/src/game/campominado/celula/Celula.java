@@ -21,8 +21,18 @@ public class Celula {
 
 	// metodos da celula
 
+	
+	
 	public boolean isAberto() {
 		return aberto;
+	}
+
+	public ArrayList<Celula> getVizinhos() {
+		return vizinhos;
+	}
+
+	public void setVizinhos(ArrayList<Celula> vizinhos) {
+		this.vizinhos = vizinhos;
 	}
 
 	public void setAberto(boolean aberto) {
@@ -63,6 +73,7 @@ public class Celula {
         this.aberto = true;
         return (this.bomba) ? -1 : numeroBombasVizinhas();
     }
+	
 
 		//verificador de bombas vizinhas
 	public int numeroBombasVizinhas() {
@@ -73,7 +84,6 @@ public class Celula {
 				contadorBomba++;
 			}
 		}
-
 		return contadorBomba;
 	}
 
