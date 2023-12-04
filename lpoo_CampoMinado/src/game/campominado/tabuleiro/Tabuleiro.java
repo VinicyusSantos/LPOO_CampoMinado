@@ -60,23 +60,54 @@ public class Tabuleiro {
 	}
 
 		//metodo p/ continuar jogo
+	
 	public int continuandoJogo(int linha, int coluna, int id) {
-		if(id == 1) {
-			int result = celulas[linha][coluna].clique();
-			if (result == -1) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-		else if(id == 2) {
-			celulas[linha][coluna].marcar();
-			return 0;
-		}
-		else {
-			celulas[linha][coluna].desmarcar(false);
-			return 0;
-		}
+	    if (id == 1) {
+	        Celula celula = celulas[linha][coluna];
+	        int result = celula.clique();
+
+	       
+	        if (result != -1 && !celula.isAberto() && celula.numeroBombasVizinhas() == 0) {
+	            abrirVizinhas(linha, coluna);  
+	        }
+
+	        if (result == -1) {
+	            return 1;
+	        } else {
+	            return 0;
+	        }
+	    } else if (id == 2) {
+	        celulas[linha][coluna].marcar();
+	        return 0;
+	    } else {
+	        celulas[linha][coluna].desmarcar(false);
+	        return 0;
+	    }
+	}
+	
+	public void abrirVizinhas(int linha, int coluna) {
+	    Celula celula = celulas[linha][coluna];
+
+	    
+	    if (celula.isAberto()) {
+	        return;
+	    }
+
+	    
+	    int resultado = celula.clique();
+
+	    if (resultado != -1 && celula.numeroBombasVizinhas() == 0) {
+	        for (int i = linha - 1; i <= linha + 1; i++) {
+	            for (int j = coluna - 1; j <= coluna + 1; j++) {
+	                if (i >= 0 && i < linhas && j >= 0 && j < colunas) {
+	                    
+	                    if (i != linha || j != coluna) {
+	                        abrirVizinhas(i, j);  
+	                    }
+	                }
+	            }
+	        }
+	    }
 	}
 
 	/*
@@ -125,7 +156,7 @@ public class Tabuleiro {
 			}
 			str += "\n";
 		}
-		return str;
+		return str;
 	}
 
 }
