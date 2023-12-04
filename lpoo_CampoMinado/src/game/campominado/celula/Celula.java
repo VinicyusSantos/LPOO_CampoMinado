@@ -68,11 +68,15 @@ public class Celula {
 	public void setBandeira(boolean bandeira) {
 		this.bandeira = bandeira;
 	}
-
+	
 	public int clique() {
-        this.aberto = true;
-        return (this.bomba) ? -1 : numeroBombasVizinhas();
-    }
+	    if (!aberto && !bandeira) {
+	        this.aberto = true;
+	        return (this.bomba) ? -1 : numeroBombasVizinhas();
+	    } else {
+	        return 0; 
+	    }
+	}
 	
 
 		//verificador de bombas vizinhas
