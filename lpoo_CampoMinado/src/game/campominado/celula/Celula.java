@@ -21,8 +21,6 @@ public class Celula {
 
 	// metodos da celula
 
-	
-	
 	public boolean isAberto() {
 		return aberto;
 	}
@@ -42,7 +40,7 @@ public class Celula {
 	public boolean isBomba() {
 		return bomba;
 	}
-	
+
 	public void addBomba() {
 		setBomba(true);
 	}
@@ -51,16 +49,16 @@ public class Celula {
 		this.bomba = bomba;
 	}
 
-	//adiciona vizinhos
+	// adiciona vizinhos
 	public void addVizinhos(Celula i) {
 		this.vizinhos.add(i);
 	}
 
-		//verifica se tem bomba
+	// verifica se tem bomba
 	public boolean temBomba() {
 		return bomba;
 	}
-	
+
 	public boolean isBandeira() {
 		return bandeira;
 	}
@@ -68,18 +66,34 @@ public class Celula {
 	public void setBandeira(boolean bandeira) {
 		this.bandeira = bandeira;
 	}
+
+	/*public int clique() {
+		if (!aberto && !bandeira) {
+			this.aberto = true;
+			return (this.bomba) ? -1 : numeroBombasVizinhas();
+		} else {
+			return 0;
+		}
+	}*/
 	
 	public int clique() {
 	    if (!aberto && !bandeira) {
 	        this.aberto = true;
+
+	        
+	        if (!bomba && numeroBombasVizinhas() == 0) {
+	            for (Celula vizinho : vizinhos) {
+	                vizinho.clique();  
+	            }
+	        }
+
 	        return (this.bomba) ? -1 : numeroBombasVizinhas();
 	    } else {
-	        return 0; 
+	        return 0;  
 	    }
 	}
-	
 
-		//verificador de bombas vizinhas
+	// verificador de bombas vizinhas
 	public int numeroBombasVizinhas() {
 		int contadorBomba = 0;
 
@@ -91,25 +105,23 @@ public class Celula {
 		return contadorBomba;
 	}
 
-		//marcar bandeira
+	// marcar bandeira
 	public void marcar() {
-		if(isAberto()) {
+		if (isAberto()) {
 			setBandeira(false);
-		}
-		else if(isBandeira()) {
+		} else if (isBandeira()) {
 			setBandeira(!isBandeira());
-		}
-		else {
+		} else {
 			setBandeira(true);
 		}
 	}
-		
-		//desmarcar bandeira
+
+	// desmarcar bandeira
 	public void desmarcar(boolean mode) {
 		this.bandeira = mode;
 	}
 
-		//verificar fim de jogo
+	// verificar fim de jogo
 	public boolean fimJogo() {
 		if (aberto && bomba) {
 			return true;
@@ -117,5 +129,5 @@ public class Celula {
 			return false;
 		}
 	}
-	
+
 }

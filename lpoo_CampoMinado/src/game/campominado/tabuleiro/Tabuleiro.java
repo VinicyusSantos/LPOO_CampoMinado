@@ -59,22 +59,17 @@ public class Tabuleiro {
 		addMinas();
 	}
 
-		//metodo p/ continuar jogo
-	
+	// metodo p/ continuar jogo
+
 	public int continuandoJogo(int linha, int coluna, int id) {
 	    if (id == 1) {
 	        Celula celula = celulas[linha][coluna];
-	        int result = celula.clique();
-
-	       
-	        if (result != -1 && !celula.isAberto() && celula.numeroBombasVizinhas() == 0) {
-	            abrirVizinhas(linha, coluna);  
-	        }
+	        int result = celula.clique(); 
 
 	        if (result == -1) {
-	            return 1;
+	            return 1;  
 	        } else {
-	            return 0;
+	            return 0;  
 	        }
 	    } else if (id == 2) {
 	        celulas[linha][coluna].marcar();
@@ -84,30 +79,28 @@ public class Tabuleiro {
 	        return 0;
 	    }
 	}
-	
+
 	public void abrirVizinhas(int linha, int coluna) {
-	    Celula celula = celulas[linha][coluna];
+		Celula celula = celulas[linha][coluna];
 
-	    
-	    if (celula.isAberto()) {
-	        return;
-	    }
+		if (celula.isAberto()) {
+			return;
+		}
 
-	    
-	    int resultado = celula.clique();
+		int resultado = celula.clique();
 
-	    if (resultado != -1 && celula.numeroBombasVizinhas() == 0) {
-	        for (int i = linha - 1; i <= linha + 1; i++) {
-	            for (int j = coluna - 1; j <= coluna + 1; j++) {
-	                if (i >= 0 && i < linhas && j >= 0 && j < colunas) {
-	                    
-	                    if (i != linha || j != coluna) {
-	                        abrirVizinhas(i, j);  
-	                    }
-	                }
-	            }
-	        }
-	    }
+		if (resultado != -1 && celula.numeroBombasVizinhas() == 0) {
+			for (int i = linha - 1; i <= linha + 1; i++) {
+				for (int j = coluna - 1; j <= coluna + 1; j++) {
+					if (i >= 0 && i < linhas && j >= 0 && j < colunas) {
+
+						if (i != linha || j != coluna) {
+							abrirVizinhas(i, j);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/*
@@ -119,30 +112,30 @@ public class Tabuleiro {
 		int minasRestantes = bombas;
 
 		while (minasRestantes > 0) {
-	        int linha = random.nextInt(linhas);
-	        int coluna = random.nextInt(colunas);
+			int linha = random.nextInt(linhas);
+			int coluna = random.nextInt(colunas);
 
-	        if (!(celulas[linha][coluna] instanceof Bomba)) {
-	            celulas[linha][coluna] = new Bomba();
-	            minasRestantes--;
-	        }
-	    }
+			if (!(celulas[linha][coluna] instanceof Bomba)) {
+				celulas[linha][coluna] = new Bomba();
+				minasRestantes--;
+			}
+		}
 
-	    // Adicionando vizinhos para as bombas
-	    for (int i = 0; i < linhas; i++) {
-	        for (int j = 0; j < colunas; j++) {
-	            if (celulas[i][j] instanceof Bomba) {
-	                // Adiciona todos os vizinhos para as bombas
-	                for (int x = i - 1; x <= i + 1; x++) {
-	                    for (int y = j - 1; y <= j + 1; y++) {
-	                        if (x >= 0 && x < linhas && y >= 0 && y < colunas && !(x == i && y == j)) {
-	                            celulas[x][y].addVizinhos(celulas[i][j]);
-	                        }
-	                    }
-	                }
-	            }
-	        }
-	    }
+		// Adicionando vizinhos para as bombas
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				if (celulas[i][j] instanceof Bomba) {
+					// Adiciona todos os vizinhos para as bombas
+					for (int x = i - 1; x <= i + 1; x++) {
+						for (int y = j - 1; y <= j + 1; y++) {
+							if (x >= 0 && x < linhas && y >= 0 && y < colunas && !(x == i && y == j)) {
+								celulas[x][y].addVizinhos(celulas[i][j]);
+							}
+						}
+					}
+				}
+			}
+		}
 
 	}
 
@@ -156,7 +149,7 @@ public class Tabuleiro {
 			}
 			str += "\n";
 		}
-		return str;
+		return str;
 	}
 
 }
