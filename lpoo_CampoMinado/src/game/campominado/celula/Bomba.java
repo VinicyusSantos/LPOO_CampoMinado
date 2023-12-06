@@ -15,6 +15,15 @@ public class Bomba extends Celula {
 
 	@Override
     public String toString() {
-        return (isBomba() && isAberto()) ? "*" : "-";
+        //return (isBomba() && isAberto()) ? "*" : "A";
+        if(isBomba() && isAberto()) {
+        	return "*";
+        }/*else if(isBomba() && !isAberto()) {
+        	return "A";
+        }*/ else if(isBandeira()) {
+        	return "F";
+        } else {
+        	return "A";
+        }
     }
 }
