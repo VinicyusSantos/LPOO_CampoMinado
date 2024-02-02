@@ -23,7 +23,7 @@ public class Bomba extends Celula {
         }*/ else if(isBandeira()) {
         	return "F";
         } else {
-        	return "A";
+        	return "-";
         }
     }
 }
