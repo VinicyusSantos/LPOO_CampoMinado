@@ -2,32 +2,46 @@ package game.campominado.main;
 
 import game.campominado.jogador.Jogador;
 import game.campominado.tabuleiro.GeradorTabuleiro;
-import java.util.Scanner;
 import game.campominado.tabuleiro.Tabuleiro;
+import game.campominado.tabuleiro.TabuleiroMaluco;
+
+import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-		Scanner sc = new Scanner(System.in);
+        int linhas = 9;
+        int colunas = 9;
+        int bombas = 15;
+        double nivelMaluquice = 0.2;
 
-		int linhas = 9;
-		int colunas = 9;
-		int bombas = 15;
+        System.out.println("Escolha o modo de jogo:");
+        System.out.println("1 - Campo Minado Tradicional");
+        System.out.println("2 - Campo Minado Maluco");
+        int modoJogo = sc.nextInt();
 
-		//gerando o tabuleiro
-		GeradorTabuleiro n = new GeradorTabuleiro(linhas, colunas, bombas);
-		Tabuleiro tab = n.gerarTabuleiro();
-		System.out.println(tab);
-		
-		//iniciando jogo
-		
-		System.out.print("NOME JOGADOR 1: ");
-		String nomeJogador1 = sc.next();
-		System.out.print("NOME JOGADOR 2: ");
-		String nomeJogador2 = sc.next();
-		
-		Jogador[] jogadores = new Jogador[2];
+        Tabuleiro tabuleiro;
+
+        if (modoJogo == 1) {
+            // Modo Tradicional
+            tabuleiro = new GeradorTabuleiro(linhas, colunas, bombas).gerarTabuleiro();
+        } else if (modoJogo == 2) {
+            // Modo Maluco
+            tabuleiro = new TabuleiroMaluco(linhas, colunas, bombas, nivelMaluquice);
+        } else {
+            System.out.println("Modo de jogo inválido. Saindo.");
+            return;
+        }
+
+        // Iniciando o jogo
+        System.out.print("NOME JOGADOR 1: ");
+        String nomeJogador1 = sc.next();
+        System.out.print("NOME JOGADOR 2: ");
+        String nomeJogador2 = sc.next();
+
+        Jogador[] jogadores = new Jogador[2];
         jogadores[0] = new Jogador(nomeJogador1, 0);
         jogadores[1] = new Jogador(nomeJogador2, 0);
 
@@ -43,8 +57,8 @@ public class Main {
             System.out.print("Coluna: ");
             int coluna = sc.nextInt();
 
-            int resultado = tab.continuandoJogo(linha, coluna, opcao);
-            System.out.println(tab);
+            int resultado = tabuleiro.continuandoJogo(linha, coluna, opcao);
+            System.out.println(tabuleiro);
 
             if (resultado == 1) {
                 System.out.println(jogadores[indiceJogadorAtual].getName() + " acertou em uma bomba! Jogo encerrado!");
@@ -53,11 +67,10 @@ public class Main {
                 jogadores[indiceJogadorAtual].setXp(jogadores[indiceJogadorAtual].getXp() + 1);
             }
 
-            // Alternar para o outro jogador
+            // outro jogador
             indiceJogadorAtual = (indiceJogadorAtual + 1) % 2;
         }
 
         sc.close();
     }
-
 }

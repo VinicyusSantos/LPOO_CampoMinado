@@ -23,6 +23,26 @@ public class Tabuleiro {
 
 	// metodos
 
+	public int getLinhas() {
+        return linhas;
+    }
+
+    public int getColunas() {
+        return colunas;
+    }
+
+    public int getBombas() {
+        return bombas;
+    }
+
+    public Celula[][] getCelulas() {
+        return celulas;
+    }
+    
+    public void setCelulas(Celula[][] celulas) {
+        this.celulas = celulas;
+    }
+    
 	// criando a matriz e cada celula
 	public void iniciarCampo() {
 		celulas = new Celula[linhas][colunas];

@@ -7,6 +7,7 @@ public class Celula {
 	private boolean aberto;
 	private boolean bomba;
 	private boolean bandeira;
+	private int numeroBombasVizinhas;
 
 	ArrayList<Celula> vizinhos;
 
@@ -28,6 +29,14 @@ public class Celula {
 	public ArrayList<Celula> getVizinhos() {
 		return vizinhos;
 	}
+	
+	public int getNumeroBombasVizinhas() {
+        return numeroBombasVizinhas;
+    }
+
+    public void setNumeroBombasVizinhas(int numeroBombasVizinhas) {
+        this.numeroBombasVizinhas = numeroBombasVizinhas;
+    }
 
 	public void setVizinhos(ArrayList<Celula> vizinhos) {
 		this.vizinhos = vizinhos;
