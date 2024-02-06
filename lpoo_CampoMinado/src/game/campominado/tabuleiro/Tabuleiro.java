@@ -3,10 +3,11 @@ package game.campominado.tabuleiro;
 import game.campominado.celula.Celula;
 import game.campominado.celula.Bomba;
 import game.campominado.celula.VizinhaBomba;
+import game.campominado.exception.ValorInvalidoException;
 import game.campominado.celula.EspacoVazio;
 import java.util.Random;
 
-public class Tabuleiro {
+public abstract class Tabuleiro implements JogoTabuleiro {
 	// atributos do tabuleiro
 	private int linhas;
 	private int colunas;
@@ -26,6 +27,13 @@ public class Tabuleiro {
 	public int getLinhas() {
         return linhas;
     }
+	
+	public void setLinhas(int linhas) {
+	    if (linhas <= 0) {
+	        throw new ValorInvalidoException("O número de linhas deve ser maior que zero.");
+	    }
+	    this.linhas = linhas;
+	}
 
     public int getColunas() {
         return colunas;
@@ -128,6 +136,9 @@ public class Tabuleiro {
 	 * addBombas da classe Celula
 	 */
 	public void addMinas() {
+		if(celulas == null) {
+			return;
+		}
 		Random random = new Random();
 		int minasRestantes = bombas;
 
