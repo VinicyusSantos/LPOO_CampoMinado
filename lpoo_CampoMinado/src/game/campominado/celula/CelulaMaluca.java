@@ -2,6 +2,8 @@ package game.campominado.celula;
 
 import java.util.Random;
 
+import game.campominado.exception.ValorAtributoInvalidoException;
+
 public class CelulaMaluca extends Celula {
     private double nivelMaluquice;
 
@@ -29,16 +31,31 @@ public class CelulaMaluca extends Celula {
     public void setBomba(boolean bomba) {
         if (!isAberto() && isBandeira() && Math.random() < nivelMaluquice) {
             super.setBomba(!bomba);
-            notificarVizinhos();
+            // Notificação de vizinhos será feita depois
         } else {
+            if (temBomba()) {
+                // Notificação de vizinhos será feita depois
+            }
             super.setBomba(bomba);
         }
     }
 
-    private void notificarVizinhos() {
+    private void notificarVizinhos() throws ValorAtributoInvalidoException {
         for (Celula vizinho : getVizinhos()) {
             if (!vizinho.temBomba() && !vizinho.isAberto()) {
                 vizinho.setNumeroBombasVizinhas(vizinho.getNumeroBombasVizinhas() + (temBomba() ? 1 : -1));
+            }
+        }
+    }
+
+    private void notificarVizinhosRemocao() throws ValorAtributoInvalidoException {
+        for (Celula vizinho : getVizinhos()) {
+            if (!vizinho.temBomba() && !vizinho.isAberto()) {
+                int novasBombasVizinhas = vizinho.getNumeroBombasVizinhas() - 1;
+                vizinho.setNumeroBombasVizinhas(novasBombasVizinhas);
+                if (novasBombasVizinhas == 0 && !vizinho.temBomba()) {
+                    vizinho.clique();
+                }
             }
         }
     }

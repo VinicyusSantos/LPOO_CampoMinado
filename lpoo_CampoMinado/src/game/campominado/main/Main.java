@@ -2,6 +2,7 @@ package game.campominado.main;
 
 import game.campominado.jogador.Jogador;
 import game.campominado.tabuleiro.GeradorTabuleiro;
+import game.campominado.tabuleiro.JogoTabuleiro;
 import game.campominado.tabuleiro.Tabuleiro;
 import game.campominado.tabuleiro.TabuleiroMaluco;
 
@@ -12,24 +13,50 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int linhas = 9;
-        int colunas = 9;
-        int bombas = 15;
-        double nivelMaluquice = 0.2;
+        int linhasIniciante = 9;
+        int colunasIniciante = 9;
+        int bombasIniciante = 15;
+        double nivelMaluquice = 0.8;
+        int dificuldade = 1;
+        
+        int linhasIntermediario = 16;
+        int colunasIntermediario = 16;
+        int bombasIntermediario = 30;
+        
+        int linhasAvancado = 16;
+        int colunasAvancado = 30;
+        int bombasAvancado = 60;
 
         System.out.println("Escolha o modo de jogo:");
         System.out.println("1 - Campo Minado Tradicional");
         System.out.println("2 - Campo Minado Maluco");
         int modoJogo = sc.nextInt();
+        
+        if(modoJogo == 1) {
+        	System.out.println("Dificuldade:");
+        	System.out.println("1 - iniciante");
+        	System.out.println("2 - medio");
+        	System.out.println("3 - dificil");
+        	dificuldade = sc.nextInt();
+        }
 
-        Tabuleiro tabuleiro;
+        JogoTabuleiro tabuleiro = null;
 
         if (modoJogo == 1) {
             // Modo Tradicional
-            tabuleiro = new GeradorTabuleiro(linhas, colunas, bombas).gerarTabuleiro();
+        	if(dificuldade == 1) {
+        		tabuleiro = new GeradorTabuleiro(linhasIniciante, colunasIniciante, bombasIniciante, 1).gerarTabuleiro();
+        	}
+        	else if(dificuldade == 2) {
+        		tabuleiro = new GeradorTabuleiro(linhasIntermediario, colunasIntermediario, bombasIntermediario, 2).gerarTabuleiro();
+        	}
+        	else if(dificuldade == 3) {
+        		tabuleiro = new GeradorTabuleiro(linhasAvancado, colunasAvancado, bombasAvancado, 3).gerarTabuleiro();
+        	}
+            
         } else if (modoJogo == 2) {
             // Modo Maluco
-            tabuleiro = new TabuleiroMaluco(linhas, colunas, bombas, nivelMaluquice);
+            tabuleiro = new TabuleiroMaluco(linhasIniciante, colunasIniciante, bombasIniciante, nivelMaluquice);
         } else {
             System.out.println("Modo de jogo inválido. Saindo.");
             return;

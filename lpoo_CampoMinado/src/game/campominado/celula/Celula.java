@@ -2,7 +2,9 @@ package game.campominado.celula;
 
 import java.util.ArrayList;
 
-public class Celula {
+import game.campominado.exception.ValorAtributoInvalidoException;
+
+public abstract class Celula {
 	// atributos da classe celula
 	private boolean aberto;
 	private boolean bomba;
@@ -34,7 +36,10 @@ public class Celula {
         return numeroBombasVizinhas;
     }
 
-    public void setNumeroBombasVizinhas(int numeroBombasVizinhas) {
+    public void setNumeroBombasVizinhas(int numeroBombasVizinhas) throws ValorAtributoInvalidoException {
+    	if (numeroBombasVizinhas < 0) {
+            throw new ValorAtributoInvalidoException("O número de bombas vizinhas não pode ser negativo.");
+        }
         this.numeroBombasVizinhas = numeroBombasVizinhas;
     }
 
