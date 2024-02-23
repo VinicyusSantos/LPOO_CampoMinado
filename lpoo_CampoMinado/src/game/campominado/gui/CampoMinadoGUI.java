@@ -15,29 +15,33 @@ import game.campominado.main.Main;
 
 public class CampoMinadoGUI extends JFrame implements ActionListener{
 	
-	JButton botaoModoClassico;
-	JButton botaoModoMaluco;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JButton iniciarJogo;
+	JButton pontuacao;
 	
 	public CampoMinadoGUI() {
 		
 		Border border = BorderFactory.createLineBorder(Color.white,5);
 		JLabel label = new JLabel();
 		
-		botaoModoClassico = new JButton();
-		botaoModoClassico.setBounds(65, 150, 350, 100);
-		botaoModoClassico.addActionListener(this);
-		botaoModoClassico.setText("Modo Classico");
-		botaoModoClassico.setFocusable(false);
-		botaoModoClassico.setFont(new Font("Arial Black",Font.BOLD,25));
-		botaoModoClassico.setBackground(Color.white);
+		iniciarJogo = new JButton();
+		iniciarJogo.setBounds(65, 150, 350, 100);
+		iniciarJogo.addActionListener(this);
+		iniciarJogo.setText("iniciar");
+		iniciarJogo.setFocusable(false);
+		iniciarJogo.setFont(new Font("Arial Black",Font.BOLD,25));
+		iniciarJogo.setBackground(Color.white);
 		
-		botaoModoMaluco = new JButton();
-		botaoModoMaluco.setBounds(65, 250, 350, 100);
-		botaoModoMaluco.addActionListener(e -> System.out.println("clicou"));
-		botaoModoMaluco.setText("Modo Maluco");
-		botaoModoMaluco.setFocusable(false);
-		botaoModoMaluco.setFont(new Font("Arial Black",Font.BOLD,25));
-		botaoModoMaluco.setBackground(Color.white);
+		pontuacao = new JButton();
+		pontuacao.setBounds(65, 250, 350, 100);
+		pontuacao.addActionListener(this);
+		pontuacao.setText("Pontuação");
+		pontuacao.setFocusable(false);
+		pontuacao.setFont(new Font("Arial Black",Font.BOLD,25));
+		pontuacao.setBackground(Color.white);
 
 		
 		label.setBorder(border);
@@ -50,14 +54,16 @@ public class CampoMinadoGUI extends JFrame implements ActionListener{
 		this.setVisible(true);
 		this.getContentPane().setBackground(Color.black);
 		this.add(label);
-		this.add(botaoModoClassico);
-		this.add(botaoModoMaluco);
+		this.add(iniciarJogo);
+		this.add(pontuacao);
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Clicou");
-		
+		if(e.getSource()==iniciarJogo) {
+			dispose();
+            new JogoFrame();
+		}
 	}
 }
