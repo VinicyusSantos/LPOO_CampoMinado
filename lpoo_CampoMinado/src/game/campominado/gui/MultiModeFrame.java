@@ -72,11 +72,11 @@ public class MultiModeFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==modoClassico) {
 			dispose();
-			ModoClassicoMulti single = new ModoClassicoMulti();
+			TabuleiroModoClassicoMulti single = new TabuleiroModoClassicoMulti();
 		}
 		if(e.getSource()==modoMaluco) {
 			dispose();
-			ModoMalucoMulti multi = new ModoMalucoMulti();
+			TabuleiroModoMalucoMulti multi = new TabuleiroModoMalucoMulti();
 		}
 		if(e.getSource()==voltar){
 			dispose();
