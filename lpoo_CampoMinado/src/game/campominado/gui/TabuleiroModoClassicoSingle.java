@@ -88,27 +88,29 @@ public class TabuleiroModoClassicoSingle extends JFrame {
                 //verifica cada botão clicado, se tem bomba, bandeira, espaço vazio.
                 button.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Celula celula = tabuleiro.getCelulas()[linha][coluna];
-                        if (!celula.isAberto() && !celula.isBandeira()) { // Verifica se a célula não foi aberta e não possui bandeira
-                            if (celula instanceof Bomba) {
-                                showBomb(linha, coluna);
-                                endGame(false);
-                            } else if (celula instanceof EspacoVazio) {
-                                revealEmptyCells(linha, coluna);
-                            } else {
-                                revealCell(linha, coluna, celula.getNumeroBombasVizinhas());
-                                // Incrementa XP do jogador ao clicar em uma célula sem bomba
-                                jogador.setXp(jogador.getXp() + 1);
-                                String mensagem = "Jogador: " + jogador.getName() + "\nPontuação: " + jogador.getXp();
-                                jogadorLabel.setText("Jogador: " + jogador.getName() + " - Pontuação: " + jogador.getXp());
-
-                            }
-                            checkGameStatus();
-                        } else if (!celula.isAberto() && celula.isBandeira()) { // Se a célula possui bandeira
-                            removeFlag(button); // Remove a bandeira
-                        }
-                    }
+                	public void actionPerformed(ActionEvent e) {
+                	    Celula celula = tabuleiro.getCelulas()[linha][coluna];
+                	    if (!celula.isAberto() && !celula.isBandeira()) { // Verifica se a célula não foi aberta e não possui bandeira
+                	        if (celula instanceof Bomba) {
+                	            showBomb(linha, coluna);
+                	            endGame(false);
+                	        } else if (celula instanceof EspacoVazio) {
+                	            revealEmptyCells(linha, coluna);
+                	            // Incrementa XP do jogador ao clicar em uma célula sem bomba
+                	            jogador.setXp(jogador.getXp() + 1);
+                	            jogadorLabel.setText("Jogador: " + jogador.getName() + " - Pontuação: " + jogador.getXp());
+                	            checkGameStatus();
+                	        } else {
+                	            revealCell(linha, coluna, celula.getNumeroBombasVizinhas());
+                	            // Incrementa XP do jogador ao clicar em uma célula sem bomba
+                	            jogador.setXp(jogador.getXp() + 1);
+                	            jogadorLabel.setText("Jogador: " + jogador.getName() + " - Pontuação: " + jogador.getXp());
+                	            checkGameStatus();
+                	        }
+                	    } else if (!celula.isAberto() && celula.isBandeira()) { // Se a célula possui bandeira
+                	        removeFlag(button); // Remove a bandeira
+                	    }
+                	}
                 });
                 
                 button.addMouseListener(new MouseAdapter() {
