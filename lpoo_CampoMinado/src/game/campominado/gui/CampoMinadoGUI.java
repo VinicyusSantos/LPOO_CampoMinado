@@ -64,6 +64,9 @@ public class CampoMinadoGUI extends JFrame implements ActionListener{
 		if(e.getSource()==iniciarJogo) {
 			dispose();
             new JogoFrame();
+		}else if(e.getSource()==pontuacao) {
+			dispose();
+			new VisualizarInformacoes();
 		}
 	}
 }
