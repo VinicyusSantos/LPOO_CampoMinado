@@ -112,13 +112,13 @@ public class SingleModeFrame extends JFrame implements ActionListener {
         } else if (modoClassicoSelecionado) {
             if (e.getSource() == tabuleiroIniciante) {
                 dispose();
-                TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroIniciante(9,9,20));
+                TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroIniciante(9,9,10));
             } else if (e.getSource() == tabuleiroIntermediario) {
                 dispose();
-                TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroIntermediario(16,16,70));
+                TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroIntermediario(16,16,50));
             } else if (e.getSource() == tabuleiroDificil) {
                 dispose();
-                TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroAvancado(16,30,145));
+                TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroAvancado(18,18,100));
             }
         }
 
