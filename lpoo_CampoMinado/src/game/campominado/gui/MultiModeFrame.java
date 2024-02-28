@@ -109,7 +109,7 @@ public class MultiModeFrame extends JFrame implements ActionListener {
 
 	@SuppressWarnings("unused")
 	@Override
-    	public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
         if (e.getSource() == modoClassico) {
             modoClassicoSelecionado = true;
             modoClassico.setEnabled(false); // Desabilita o botão de Modo Clássico após ser selecionado
@@ -120,13 +120,13 @@ public class MultiModeFrame extends JFrame implements ActionListener {
         } else if (modoClassicoSelecionado) {
             if (e.getSource() == tabuleiroIniciante) {
                 dispose();
-                TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroIniciante(9,9,20));
+                TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroIniciante(9,9,15));
             } else if (e.getSource() == tabuleiroIntermediario) {
                 dispose();
-                TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroIntermediario(16,16,70));
+                TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroIntermediario(16,16,50));
             } else if (e.getSource() == tabuleiroDificil) {
                 dispose();
-                TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroAvancado(16,30,145));
+                TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroAvancado(18,18,100));
             }
         }
 
