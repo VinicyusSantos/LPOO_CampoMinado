@@ -238,10 +238,23 @@ public class TabuleiroModoClassicoMulti extends JFrame {
     }
 
     private void endGame(boolean win) {
+        String message;
+        String title;
+        int optionType;
+
         if (win) {
-            JOptionPane.showMessageDialog(this, "Parabéns! Você ganhou!", "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
+            message = "Parabéns! Você ganhou!";
+            title = "Fim de Jogo - Vitória";
+            optionType = JOptionPane.INFORMATION_MESSAGE;
         } else {
-            JOptionPane.showMessageDialog(this, "Você perdeu! Tente novamente.", "Fim de Jogo", JOptionPane.ERROR_MESSAGE);
+            message = "Você perdeu! Tente novamente.";
+            title = "Fim de Jogo - Derrota";
+            optionType = JOptionPane.ERROR_MESSAGE;
         }
+
+        JOptionPane.showMessageDialog(this, message, title, optionType);
+
+        dispose(); // Fecha a janela atual
+        new JogoFrame(); // Volta ao menu principal
     }
 }
