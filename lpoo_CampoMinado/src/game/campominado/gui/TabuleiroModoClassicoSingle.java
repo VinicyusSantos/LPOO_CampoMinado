@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -42,6 +43,18 @@ public class TabuleiroModoClassicoSingle extends JFrame {
     public TabuleiroModoClassicoSingle(Tabuleiro tabuleiro) {
         this.tabuleiro = tabuleiro;
         this.dinamite = new ImageIcon("src/game/campominado/imagens/Dinamite.png");
+        
+        try {
+            jogador = Jogador.carregarInfo("src/game/campominado/jogador/info_jogador.txt");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Não foi possível carregar as informações do jogador.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (jogador == null) {
+            String nome = JOptionPane.showInputDialog(this, "Digite seu nome:");
+            jogador = new Jogador(nome, 0);
+        }
         
      // Solicitar nome do jogador
         String nome = JOptionPane.showInputDialog(this, "Digite seu nome:");
@@ -87,7 +100,7 @@ public class TabuleiroModoClassicoSingle extends JFrame {
 
                 //verifica cada botão clicado, se tem bomba, bandeira, espaço vazio.
                 button.addActionListener(new ActionListener() {
-                    @Override
+                	@Override
                 	public void actionPerformed(ActionEvent e) {
                 	    Celula celula = tabuleiro.getCelulas()[linha][coluna];
                 	    if (!celula.isAberto() && !celula.isBandeira()) { // Verifica se a célula não foi aberta e não possui bandeira
@@ -238,13 +251,36 @@ public class TabuleiroModoClassicoSingle extends JFrame {
     
 
     private void endGame(boolean win) {
+        String message;
+        String title;
+        int optionType;
+
         if (win) {
-            JOptionPane.showMessageDialog(this, "Parabéns! Você ganhou!", "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
+            message = "Parabéns! Você ganhou!";
+            title = "Fim de Jogo - Vitória";
+            optionType = JOptionPane.INFORMATION_MESSAGE;
         } else {
-            JOptionPane.showMessageDialog(this, "Você perdeu! Tente novamente.", "Fim de Jogo", JOptionPane.ERROR_MESSAGE);
+            message = "Você perdeu! Tente novamente.";
+            title = "Fim de Jogo - Derrota";
+            optionType = JOptionPane.ERROR_MESSAGE;
         }
-        // Implemente a lógica para reiniciar o jogo ou voltar ao menu principal
+
+        JOptionPane.showMessageDialog(this, message, title, optionType);
+
+        dispose(); // Fecha a janela atual
+        new JogoFrame(); // Volta ao menu principal
     }
 
+    
+    @Override
+    public void dispose() {
+        super.dispose();
+        try {
+            jogador.salvarInfo("src/game/campominado/jogador/info_jogador.txt");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Não foi possível salvar as informações do jogador.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
 }
