@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -76,8 +77,8 @@ public class TabuleiroModoClassicoMulti extends JFrame {
                 JButton button = new JButton();
                 button.setFocusable(false);
                 button.setFont(new Font("Verdana", Font.BOLD, 20));
-                button.setBackground(new Color(0, 0, 40));
-                button.setForeground(new Color(0, 0, 250));
+                button.setBackground(new Color(220, 220, 220));
+                button.setForeground(new Color(176,224,230));
                 button.setBorder(BorderFactory.createLineBorder(new Color(0, 50, 100), 3));
                 button.setLayout(null);
 
@@ -256,5 +257,17 @@ public class TabuleiroModoClassicoMulti extends JFrame {
 
         dispose(); // Fecha a janela atual
         new JogoFrame(); // Volta ao menu principal
+    }
+    
+    @Override
+    public void dispose() {
+        super.dispose();
+        try {
+            jogador1.salvarInfo("src/game/campominado/jogador/info_jogador.txt");
+            jogador2.salvarInfo("src/game/campominado/jogador/info_jogador.txt");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Não foi possível salvar as informações dos jogadores.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

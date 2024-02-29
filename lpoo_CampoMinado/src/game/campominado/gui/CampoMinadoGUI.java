@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
+import game.campominado.jogador.VisualizarInformacoes;
 import game.campominado.main.Main;
 
 public class CampoMinadoGUI extends JFrame implements ActionListener{

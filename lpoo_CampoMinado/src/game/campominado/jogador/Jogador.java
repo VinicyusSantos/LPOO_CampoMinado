@@ -28,11 +28,11 @@ public class Jogador {
 	}
 
 	// Método para salvar informações do jogador em um arquivo
-    public void salvarInfo(String arquivo) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo))) {
-            writer.write(getName() + "," + getXp());
-        }
-    }
+	public void salvarInfo(String arquivo) throws IOException {
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
+	        writer.write(getName() + "," + getXp() + "\n");
+	    }
+	}
 
     // Método para carregar informações do jogador de um arquivo
     public static Jogador carregarInfo(String arquivo) throws IOException {
