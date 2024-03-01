@@ -59,26 +59,29 @@ public class CelulaMaluca extends Celula {
             }
         }
     }
-
     @Override
     public int clique() {
-        if (!isAberto() && !isBandeira()) {
-            setAberto(true);
-
-            if (!temBomba() && getNumeroBombasVizinhas() == 0) {
-                for (Celula vizinho : getVizinhos()) {
-                    vizinho.clique();
+        try {
+            if (!isAberto() && !isBandeira()) {
+                setAberto(true);
+        
+                if (!temBomba() && getNumeroBombasVizinhas() == 0) {
+                    for (Celula vizinho : getVizinhos()) {
+                        vizinho.clique();
+                    }
+                }
+        
+                if (temBomba()) {
+                    return -1;
+                } else {
+                    notificarVizinhos();
+                    return getNumeroBombasVizinhas();
                 }
             }
-
-            if (temBomba()) {
-                return -1;
-            } else {
-                notificarVizinhos();
-                return getNumeroBombasVizinhas();
-            }
+        } catch (ValorAtributoInvalidoException e) {
+            e.printStackTrace(); // Or handle it appropriately
         }
-
+        
         return 0;
     }
 }
