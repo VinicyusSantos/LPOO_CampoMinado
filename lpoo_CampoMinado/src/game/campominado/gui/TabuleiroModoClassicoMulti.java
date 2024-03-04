@@ -239,6 +239,11 @@ public class TabuleiroModoClassicoMulti extends JFrame {
     }
 
     private void endGame(boolean win) {
+    	if (!win) {
+            // Se o jogador perdeu, mostra todas as bombas
+            showAllBombs();
+        }
+    	
         String message;
         String title;
         int optionType;
@@ -257,6 +262,17 @@ public class TabuleiroModoClassicoMulti extends JFrame {
 
         dispose(); // Fecha a janela atual
         new JogoFrame(); // Volta ao menu principal
+    }
+    
+    private void showAllBombs() {
+        for (int i = 0; i < tabuleiro.getLinhas(); i++) {
+            for (int j = 0; j < tabuleiro.getColunas(); j++) {
+                Celula celula = tabuleiro.getCelulas()[i][j];
+                if (celula instanceof Bomba) {
+                    showBomb(i, j);
+                }
+            }
+        }
     }
     
     @Override
