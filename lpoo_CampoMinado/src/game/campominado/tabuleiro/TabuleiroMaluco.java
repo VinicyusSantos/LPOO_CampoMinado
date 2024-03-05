@@ -12,7 +12,6 @@ public class TabuleiroMaluco extends Tabuleiro {
     }
 
     // Método para inicializar o tabuleiro
-    
     @Override
     public void iniciarCampo() {
         Celula[][] celulas = getCelulas();

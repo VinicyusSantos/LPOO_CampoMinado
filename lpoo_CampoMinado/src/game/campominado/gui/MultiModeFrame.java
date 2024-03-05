@@ -129,6 +129,11 @@ public class MultiModeFrame extends JFrame implements ActionListener {
                 TabuleiroModoClassicoMulti multi = new TabuleiroModoClassicoMulti(new TabuleiroAvancado(18,18,100));
             }
         }
+        
+        if(e.getSource()==modoMaluco) {
+        	dispose();
+        	TabuleiroModoMalucoMulti multi = new TabuleiroModoMalucoMulti(new TabuleiroIniciante(9,9,15));
+        }
 
         if (e.getSource() == voltar) {
             dispose();

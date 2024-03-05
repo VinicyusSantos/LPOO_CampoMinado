@@ -199,6 +199,7 @@ public class TabuleiroModoClassicoSingle extends JFrame {
                         }
                     }
                 }
+                checkGameStatus(); 
             }
         } else if (!celula.isAberto()) {
             revealCell(linha, coluna, celula.numeroBombasVizinhas());
@@ -209,11 +210,30 @@ public class TabuleiroModoClassicoSingle extends JFrame {
         JButton button = buttons[linha][coluna];
         button.setText(String.valueOf(valor));
         button.setBackground(Color.GRAY);
+        checkGameStatus(); 
+    }
+    
+    private boolean allBombsFlagged() {
+        for (int i = 0; i < tabuleiro.getLinhas(); i++) {
+            for (int j = 0; j < tabuleiro.getColunas(); j++) {
+                Celula celula = tabuleiro.getCelulas()[i][j];
+                if (celula instanceof Bomba) {
+                    if (!celula.isBandeira()) {
+                        return false; // Se uma bomba não estiver marcada, retorna falso
+                    }
+                }
+            }
+        }
+        return true; // Se todas as bombas estiverem marcadas, retorna verdadeiro
     }
 
     private void checkGameStatus() {
         // Verifica se o jogo terminou (venceu ou perdeu)
         // Se sim, chama o método endGame
+    	if(allBombsFlagged()) {
+    		endGame(true);
+    	}
+ 
     }
     
     private void endGame(boolean win) {

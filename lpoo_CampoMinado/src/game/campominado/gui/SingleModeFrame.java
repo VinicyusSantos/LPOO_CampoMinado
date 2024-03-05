@@ -121,6 +121,10 @@ public class SingleModeFrame extends JFrame implements ActionListener {
                 TabuleiroModoClassicoSingle single = new TabuleiroModoClassicoSingle(new TabuleiroAvancado(18,18,100));
             }
         }
+        if(e.getSource()== modoMaluco) {
+        	dispose();
+        	TabuleiroModoMalucoSingle single = new TabuleiroModoMalucoSingle(new TabuleiroIniciante(9,9,10));
+        }
 
         if (e.getSource() == voltar) {
             dispose();
